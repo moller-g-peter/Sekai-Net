@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html class="everything">
   <head>
-    <title>Sekai-Net - Admin</title>
+    <title>Sekai-Net</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -16,10 +16,10 @@
   </head>
   <body>
 
+    <header>
 
-
-    <header class="container">
-      <section class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- here starts our header for BACKEND page -->
+      <section class="navbar navbar-inverse navbar-fixed-top backEndHeader" role="navigation">
         <div class="container blackNavBarContainer">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -41,9 +41,7 @@
                 </div>
             </div>
       </section>
-
-
-      <section class="row">
+      <section class="row backEndHeader">
         <ul class="nav nav-tabs col-lg-6">
           <li role="presentation" class="active"><a href="#">Home</a></li>
           <li role="presentation"><a href="#">Pages</a></li>
@@ -53,12 +51,49 @@
           <li role="presentation"><a href="#">Users</a></li>
         </ul>
       </section>
+
     </header>
     
 
 
+
+
+
+
     <main class="container">
-      <section class="row">
+
+      <section class="adminDropdown col-lg-6">
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+          </ul>
+        </div>
+
+        <input type="text" class="form-control" placeholder="menu...">
+        <input type="url" class="form-control" placeholder="url...">
+        <input type="text" class="form-control" placeholder="pages...">
+        <input type="text" class="form-control" placeholder="videos...">
+        <input type="text" class="form-control" placeholder="images...">
+        <input type="text" class="form-control" placeholder="Text input">
+
+
+
+
+
+
+
+      </section>
+
+      <!-- here starts our main for BACKEND page -->
+<!--       <section class="row back backEndMain col-lg-12">
+
         <form class="col-lg-6">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -85,17 +120,24 @@
           <textarea class="form-control input-medium" rows="10">
           </textarea>
         </section>
-      </section>
+
+      </section> -->
+
     </main>
+    
 
-
-
-    <footer class="container">
-      <section class="">
+  <!--   <footer>
+      <section>
+        <footer>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              Panel content
+            </div>
+            <div class="panel-footer">Panel footer</div>
+          </div>
+        </footer>
       </section>
-    </footer>
-
-
+    </footer> -->
 
   </body>
 </html>
