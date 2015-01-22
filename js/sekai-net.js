@@ -1,6 +1,6 @@
 // Wait for the DOM to load then run start
 $(function(){
-	// $("section[class*='backEnd']").hide();
+	$("section[class*='backEnd']").hide();
 	// $(".back").hide();
 	console.log( $(".frontEnd"));
   $(".login-btn").click(function() {
