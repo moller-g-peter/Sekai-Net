@@ -306,33 +306,33 @@
 
 
       <!-- here starts our main for BACKEND page -->
-      <section class="row back backEndMain">
-        <form class="col-lg-5">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile">
-            <p class="help-block">Example block-level help text here.</p>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Check me out
-            </label>
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+      <section class="backEndMain adminDropdown col-lg-6">
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">News</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Domestic</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">International</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Business</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entertainment</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sport</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Games</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">More...</a></li>
+          </ul>
+        </div>
 
-        <section class="row col-lg-6">
-          <textarea class="form-control input-medium" rows="10">
-          </textarea>
-        </section>
+        <form class="inputField">
+          <input type="text" class="form-control" id="menu_inputField" placeholder="menu...">
+          <input type="url" class="form-control" id="url_inputField" placeholder="url...">
+          <input type="text" class="form-control" id="pages_inputField" placeholder="pages...">
+
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
       </section>
 
     </main>
