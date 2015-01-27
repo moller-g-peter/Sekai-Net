@@ -17,11 +17,11 @@ class ContentQueries extends PDOHelper {
     $page_data[":user_id"] = $this->user_info["user_id"];
 
     //extract and remove page path to prevent crash on insert page
-    $page_path = $page_data[":path"];
-    unset($page_data[":path"]);
+    // $page_path = $page_data[":path"];
+    // unset($page_data[":path"]);
     //extract and remove page menu data to prevent crash on insert page
-    $menu_data = $page_data["menuData"];
-    unset($page_data["menuData"]);
+    // $menu_data = $page_data["menuData"];
+    // unset($page_data["menuData"]);
 
     $sql = "INSERT INTO pages (title, body, user_id) VALUES (:title, :body, :user_id)";
     //since we are using prepared SQL statements, 
@@ -59,47 +59,35 @@ class ContentQueries extends PDOHelper {
   }
 
 
-  public function getAllPages() {
-    $sql = "SELECT pages.pid, pages.title, pages.body, pages.created, CONCAT(users.fname, ' ', users.lname) as author FROM pages, users";
-    return $this->query($sql);
-  }
+  // public function getAllPages() {
+  //   $sql = "SELECT pages.pid, pages.title, pages.body, pages.created, CONCAT(users.fname, ' ', users.lname) as author FROM pages, users";
+  //   return $this->query($sql);
+  // }
 
 
-  public function searchForPages($search_param) {
-    $search_param = array(":search_param" => "%".$search_param."%");
-    $sql = "SELECT pages.pid, pages.title, pages.body, pages.created, CONCAT(users.fname, ' ', users.lname) as author FROM pages, users WHERE pages.title LIKE :search_param";
-    return $this->query($sql, $search_param);
-  }
+  // public function searchForPages($search_param) {
+  //   $search_param = array(":search_param" => "%".$search_param."%");
+  //   $sql = "SELECT pages.pid, pages.title, pages.body, pages.created, CONCAT(users.fname, ' ', users.lname) as author FROM pages, users WHERE pages.title LIKE :search_param";
+  //   return $this->query($sql, $search_param);
+  // }
 
 
   /**
    * Menus
    */
 
-  public function getMenuNames() {
-    $sql = "SELECT * FROM menus";
-    return $this->query($sql);
-  }
+  // public function getMenuNames() {
+  //   $sql = "SELECT * FROM menus";
+  //   return $this->query($sql);
+  // }
 
 
-  public function getMenuLinks($menu_name) {
-    $menu_name = array(":menu_name" => $menu_name);
-    $sql = "SELECT * FROM menu_links WHERE menu = :menu_name";
+  // public function getMenuLinks($menu_name) {
+  //   $menu_name = array(":menu_name" => $menu_name);
+  //   $sql = "SELECT * FROM menu_links WHERE menu = :menu_name";
     
-    return $this->query($sql, $menu_name);
-  }
+  //   return $this->query($sql, $menu_name);
+  // }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
