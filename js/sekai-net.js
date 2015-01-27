@@ -16,8 +16,8 @@ $(function(){
   $(".inputField").submit(function() {
 
     var inputFieldData = {
-      ":title" : $(this).find("#menu_inputField").val(),
-      ":body" : $(this).find("#menu_textArea").val()
+      ":title" : $("#menu_inputField").val(),
+      ":body" : $("#menu_textArea").val()
     };
 
     insert_text_to_DB(inputFieldData);
@@ -41,9 +41,10 @@ $(function(){
         console.log("insert_text_to_DB success: ", data);
       },
       error: function(data) {
-        console.log("insert_text_to_DB error: ", data);
+        console.log("insert_text_to_DB error: ", data.responseText);
       }
     });
+    return false;
   }
 
   

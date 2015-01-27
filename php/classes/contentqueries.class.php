@@ -26,7 +26,7 @@ class ContentQueries extends PDOHelper {
     $sql = "INSERT INTO pages (title, body, user_id) VALUES (:title, :body, :user_id)";
     //since we are using prepared SQL statements, 
     //SQL and data are sent separately to the query method
-
+    var_dump($page_data);
     //first insert into the pages table
     $this->query($sql, $page_data);
 
