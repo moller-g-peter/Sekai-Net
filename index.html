@@ -306,7 +306,7 @@
 
 
       <!-- here starts our main for BACKEND page -->
-      <section class="backEndMain adminDropdown col-lg-6">
+      <section class="backEndMain adminDropdown col-lg-4">
         <!-- <div class="dropdown">
           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
             Dropdown
@@ -325,11 +325,13 @@
         </div> -->
 
         <form class="inputField">
-          <input type="text" class="form-control" id="menu_inputField" placeholder="title...">
+          <input type="text" id="menu_inputField" class="form-control" placeholder="title...">
+          <input type="text" id="url_inputField" class="form-control" placeholder="url...">
           <textarea id="menu_textArea" class="form-control" rows="10" placeholder="Enter text..." required></textarea>
           
 
-          <div class="col-sm-offset-2 col-sm-10">
+          <div class="col-sm-12">
+            <input type="file" id="exampleInputFile">
             <button type="submit" class="btn btn-success">Submit</button>
           </div>
         </form>

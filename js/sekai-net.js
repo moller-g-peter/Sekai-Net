@@ -17,11 +17,12 @@ $(function(){
 
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
+      ":url" : $("#url_inputField").val(),
       ":body" : $("#menu_textArea").val()
     };
 
     insert_text_to_DB(inputFieldData);
- // console.log("what happens");
+        console.log("what happens");
     this.reset();
 
     return false;
@@ -46,6 +47,4 @@ $(function(){
     });
     return false;
   }
-
-  
 });

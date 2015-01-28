@@ -17,11 +17,11 @@ class ContentQueries extends PDOHelper {
     $page_data[":user_id"] = $this->user_info["user_id"];
 
     //extract and remove page path to prevent crash on insert page
-    // $page_path = $page_data[":path"];
-    // unset($page_data[":path"]);
+    $page_path = $page_data[":path"];
+    unset($page_data[":path"]);
     //extract and remove page menu data to prevent crash on insert page
-    // $menu_data = $page_data["menuData"];
-    // unset($page_data["menuData"]);
+    $menu_data = $page_data["menuData"];
+    unset($page_data["menuData"]);
 
     $sql = "INSERT INTO pages (title, body, user_id) VALUES (:title, :body, :user_id)";
     //since we are using prepared SQL statements, 
