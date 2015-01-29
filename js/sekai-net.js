@@ -2,14 +2,14 @@
 $(function(){
 	$("section[class*='backEnd']").hide();
 
-  $(".login-btn").click(function() {
-    $("section[class*='frontEnd']").hide();
-    $("section[class*='backEnd']").show();
-    $(".clock").show();
+ //  $(".login-btn").click(function() {
+ //    $("section[class*='frontEnd']").hide();
+ //    $("section[class*='backEnd']").show();
+ //    $(".clock").show();
 
-  // $("header section:last-child").show();
-	// $("main section:last-child").show();
-  });
+ //  // $("header section:last-child").show();
+	// // $("main section:last-child").show();
+ //  });
 
   //------------------------------------------------------------------------
 

@@ -6,8 +6,6 @@ $(function(){
 		$(document).on("click","a",function(event){
 			event.preventDefault(); // = return false beteende
 			var thisHref = $(this).attr('href');
-			$('.'+thisHref).show();
-			console.log("thisHref: ",thisHref);
 
 			// Add the current "state/page" to our history
 			history.pushState(null,null,thisHref);
@@ -39,5 +37,17 @@ $(function(){
 		}
 	}
 	start();
+
+	function showPage(href){
+		$("section[class*='backEnd']").hide();
+		if (href == "login") {
+			$("section[class*='frontEnd']").hide();
+			$("section[class*='backEnd']").show();
+			$(".clock").show();
+		}
+
+		$('.'+href).show();
+			console.log("thisHref: ",href);
+	}
 });
 
