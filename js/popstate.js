@@ -1,4 +1,5 @@
 $(function(){
+	$("section[class*='backEnd']").hide();
 // Start things up
 	function start(){
 		onPopAndStart();
@@ -7,6 +8,7 @@ $(function(){
 			event.preventDefault(); // = return false beteende
 			var thisHref = $(this).attr('href');
 
+			showPage(thisHref);
 			// Add the current "state/page" to our history
 			history.pushState(null,null,thisHref);
 		});
@@ -26,20 +28,13 @@ $(function(){
 			// if no pageName set pageName to "start"
 			pageName = pageName || "home";
 
-			// Show a section with an id corresponding
-			// to the page name
-			// $('section').hide();
-			// $('section#'+pageName).show();
-			// $('header .active').removeClass('active');
-			// $('.'+pageName+"-button").addClass('active');
-			// $('section').children().hide();
-			// $('.'+pageName).show();
+			showPage(pageName);
+
 		}
 	}
 	start();
 
 	function showPage(href){
-		$("section[class*='backEnd']").hide();
 		if (href == "login") {
 			$("section[class*='frontEnd']").hide();
 			$("section[class*='backEnd']").show();
@@ -48,6 +43,15 @@ $(function(){
 
 		$('.'+href).show();
 			console.log("thisHref: ",href);
+			
+			// Show a section with an id corresponding
+			// to the page name
+			// $('section').hide();
+			// $('section#'+pageName).show();
+			// $('header .active').removeClass('active');
+			// $('.'+pageName+"-button").addClass('active');
+			// $('section').children().hide();
+			// $('.'+pageName).show();
 	}
 });
 

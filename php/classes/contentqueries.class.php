@@ -32,15 +32,15 @@ class ContentQueries extends PDOHelper {
 
     //then find pid of new page by selecting the latest page 
     //in the pages table
-    // $sql2 = "SELECT pid FROM pages ORDER BY created DESC LIMIT 1";
-    // $new_pid = $this->query($sql2);
-    // //extract pid from the array we get back
-    // $new_pid = $new_pid[0]["pid"];
+    $sql2 = "SELECT pid FROM pages ORDER BY created DESC LIMIT 1";
+    $new_pid = $this->query($sql2);
+    //extract pid from the array we get back
+    $new_pid = $new_pid[0]["pid"];
 
     //insert new page url alias
-    // $sql3 = "INSERT INTO url_alias (path, pid) VALUES (:path, :pid)";
-    // $url_data = array(":path" => $page_path, ":pid" => $new_pid);
-    // $this->query($sql3, $url_data);
+    $sql3 = "INSERT INTO url_alias (path, pid) VALUES (:path, :pid)";
+    $url_data = array(":path" => $page_path, ":pid" => $new_pid);
+    $this->query($sql3, $url_data);
 
     //if we are adding the page to a menu, do so
     // if (isset($menu_data)) {
@@ -57,6 +57,14 @@ class ContentQueries extends PDOHelper {
 
     return true;
   }
-}
 
+   public function saveMenuTitle($page_data) {
+    //adding user_id before insert
+    $sql = "INSERT INTO menu_links (path, title) VALUES (:url, :menuTitle)";
+    $this->query($sql, $page_data);
+    // i detta fall, "page_data" kan heta va fan som helst, 
+    // bara inparameter och den under är samma namn
+    }
+
+}
 
