@@ -2,7 +2,7 @@
 
 //inherits all public PDOHelper methods
 class ContentQueries extends PDOHelper {
-  //later when we have login in place, real user_info 
+  //later when we have login in place, real user_info
   //will be stored in the property user_info.
   //for now let's just fake it
   protected $user_info = array("user_id" => 1);
@@ -48,7 +48,6 @@ class ContentQueries extends PDOHelper {
     //   $menu_data = array(
     //     ":title" => $menu_data["title"],
     //     ":path" => $page_path,
-    //     ":menu_name" => $menu_data["parent"]["menu"],
     //     ":plid" => $menu_data["parent"]["mlid"] ? $menu_data["parent"]["mlid"] : null,
     //     ":weight" => $menu_data["weight"],
     //   );
@@ -58,21 +57,21 @@ class ContentQueries extends PDOHelper {
     return true;
   }
 
-    public function saveMenuTitle($page_data) {
+    public function saveMenuTitle($save_links) {
         //adding user_id before insert
         $sql = "INSERT INTO menu_links (path, title) VALUES (:url, :menuTitle)";
-        $this->query($sql, $page_data);
-        // i detta fall, "page_data" kan heta va fan som helst, 
+        $this->query($sql, $save_links);
+        // i detta fall, "save_links" kan heta va fan som helst, 
         // bara inparameter och den under är samma namn
+        // var_dump($save_links);
         }
-        
 
-    public function getMenuLinks($menu_name) {
-        $menu_name = array(":menu_name" => $menu_name);
-        $sql = "SELECT * FROM menu_links WHERE menu = :menu_name";
+
+    public function getAllLinks() {
+        $sql = "SELECT * FROM menu_links ORDER BY weight";
         
-        return $this->query($sql, $menu_name);
+        //var_dump($menu_name);
+        return $this->query($sql);
     }
 
 }
-

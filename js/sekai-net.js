@@ -39,7 +39,7 @@ $(function(){
       type: "post",
       dataType: "json",
       data: {
-        "page_data" : inputFieldData
+        "page_data" : inputFieldData // "page_data" är referens till "save_content.php"
       },
       success: function(data) {
         console.log("insert_text_to_DB success: ", data);
@@ -60,7 +60,7 @@ $(function(){
       ":url" : path
     };
 
-    console.log("insertToMenuLinks: ", insertToMenuLinks);
+    // console.log("insertToMenuLinks: ", insertToMenuLinks);
 
     $.ajax({
       url: "php/save_menu_title.php",
@@ -70,6 +70,7 @@ $(function(){
         "insert_text_to_menu_links" : insertToMenuLinks
       },
       success: function(data) {
+        getAllLinks(buildAdminSelect);
         console.log("save_menu_title success: ", data);
       },
       error: function(data) {
@@ -81,21 +82,69 @@ $(function(){
 
   //------------------------------------------------------------------------
 
-  function getMenuLinks(menu_name) {
+  function getAllLinks(successFunction) {
     $.ajax({
       url: "php/get_menu_content.php",
       type: "get",
       dataType: "json",
-      data: {
-        //menu_name must be provided
-        "menu_name": menu_name
-      },
-      //on success, execute listAllMenuLinks() function in helpers.js
-      // success: listMenuLinks,
+      success: successFunction,
       error: function(data) {
-        console.log("getMenuLinks error: ", data.responseText);
+        console.log("getAllLinks error: ", data.responseText);
       }
     });
+    return false;
   }
+
+  //------------------------------------------------------------------------
+
+  function buildAdminSelect(menuLinksData){
+    // console.log("menuLinksData :", menuLinksData);
+    var menuTree = buildMenuTree(menuLinksData);
+        console.log("menuTree :", menuTree);
+
+  }
+
+  //------------------------------------------------------------------------
+
+  function buildMenuTree(menuLinksData){
+    var menuTree = [];
+
+    var hashMap = {};
+
+    menuLinksData.forEach(function(oneInArray) {
+  
+
+      oneInArray.children = []; // ge alla länkar en meny
+    
+      // i denna if sats som vi lägger till topnivå
+      if (!oneInArray.plid){
+        menuTree.push(oneInArray); //du lägger oneInArray i menuTree med hjälp av .push
+      }
+
+      hashMap["#" + oneInArray.mlid] = oneInArray;
+    });
+
+    for(var i in hashMap){
+      var oneLink = hashMap[i];
+
+      // här lägger vi till undernivå
+      if (oneLink.plid){
+        hashMap["#" + oneLink.plid].children.push(oneLink);
+      }
+    }
+
+    console.log("menuTree :", menuTree);
+    console.log("hashMap :", hashMap);
+
+    return menuTree;
+  }
+
+
+
+// loop genom all menylinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
+
+
+
+   //------------------------------------------------------------------------
 
 });
