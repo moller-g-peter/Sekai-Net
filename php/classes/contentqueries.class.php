@@ -58,12 +58,20 @@ class ContentQueries extends PDOHelper {
     return true;
   }
 
-   public function saveMenuTitle($page_data) {
-    //adding user_id before insert
-    $sql = "INSERT INTO menu_links (path, title) VALUES (:url, :menuTitle)";
-    $this->query($sql, $page_data);
-    // i detta fall, "page_data" kan heta va fan som helst, 
-    // bara inparameter och den under är samma namn
+    public function saveMenuTitle($page_data) {
+        //adding user_id before insert
+        $sql = "INSERT INTO menu_links (path, title) VALUES (:url, :menuTitle)";
+        $this->query($sql, $page_data);
+        // i detta fall, "page_data" kan heta va fan som helst, 
+        // bara inparameter och den under är samma namn
+        }
+        
+
+    public function getMenuLinks($menu_name) {
+        $menu_name = array(":menu_name" => $menu_name);
+        $sql = "SELECT * FROM menu_links WHERE menu = :menu_name";
+        
+        return $this->query($sql, $menu_name);
     }
 
 }

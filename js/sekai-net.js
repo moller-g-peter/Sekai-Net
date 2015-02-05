@@ -52,6 +52,7 @@ $(function(){
     return false;
   }
 
+  //------------------------------------------------------------------------
 
   function save_menu_title() {
     var insertToMenuLinks = {
@@ -77,4 +78,24 @@ $(function(){
     });
     return false;
   }
+
+  //------------------------------------------------------------------------
+
+  function getMenuLinks(menu_name) {
+    $.ajax({
+      url: "php/get_menu_content.php",
+      type: "get",
+      dataType: "json",
+      data: {
+        //menu_name must be provided
+        "menu_name": menu_name
+      },
+      //on success, execute listAllMenuLinks() function in helpers.js
+      // success: listMenuLinks,
+      error: function(data) {
+        console.log("getMenuLinks error: ", data.responseText);
+      }
+    });
+  }
+
 });
