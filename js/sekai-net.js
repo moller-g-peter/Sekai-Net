@@ -100,7 +100,12 @@ $(function(){
   function buildAdminSelect(menuLinksData){
     // console.log("menuLinksData :", menuLinksData);
     var menuTree = buildMenuTree(menuLinksData);
-        console.log("menuTree :", menuTree);
+        console.log("menuTree I :", menuTree);
+    
+    var menuTreeToHtml = $("<ul class='unorderedList'></ul>");
+
+    // $(".unorderedList").remove();
+    $("unorderedList").append(buildMenuTree);
 
   }
 
@@ -121,6 +126,7 @@ $(function(){
         menuTree.push(oneInArray); //du lägger oneInArray i menuTree med hjälp av .push
       }
 
+      // "#" är valfritt men bra så att jag kan se vilka nummer som påverkas i dev tools
       hashMap["#" + oneInArray.mlid] = oneInArray;
     });
 
@@ -133,7 +139,7 @@ $(function(){
       }
     }
 
-    console.log("menuTree :", menuTree);
+    console.log("menuTree II :", menuTree);
     console.log("hashMap :", hashMap);
 
     return menuTree;
