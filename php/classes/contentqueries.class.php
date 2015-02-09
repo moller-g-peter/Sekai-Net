@@ -67,7 +67,7 @@ class ContentQueries extends PDOHelper {
         }
 
 
-    public function getAllLinks() {
+    public function contactPHP() {
         $sql = "SELECT * FROM menu_links ORDER BY weight";
         
         //var_dump($menu_name);
