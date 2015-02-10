@@ -35,6 +35,8 @@ $(function(){
 	start();
 
 	function showPage(href){
+		console.log("BANANANANANANANANA");
+        contactPHP(buildTopMenu);
 		if (href == "login") {
 			$("section[class*='frontEnd']").hide();
 			$("section[class*='backEnd']").show();
