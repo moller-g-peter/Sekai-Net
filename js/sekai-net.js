@@ -1,5 +1,19 @@
 
 $(function(){
+  
+  function contactPHP(successFunction) {
+  console.log("kajhsfkjsdfkjhsdlf");
+    $.ajax({
+      url: "php/get_menu_content.php",
+      type: "get",
+      dataType: "json",
+      success: successFunction,
+      error: function(data) {
+        console.log("contactPHP error: ", data.responseText);
+      }
+    });
+    // return false;
+  }
 
  //  $(".loginToAdmin").click(function() {
  //    $(".topMenuLinks").show();
