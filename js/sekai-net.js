@@ -1,29 +1,30 @@
 
-function contactPHP(successFunction) {
-console.log("contactPHP");
-  $.ajax({
-    url: "php/get_menu_content.php",
-    type: "get",
-    dataType: "json",
-    success: successFunction,
-    error: function(data) {
-      console.log("contactPHP error: ", data.responseText);
-    }
-  });
-  return false;
-}
+// function contactPHP(successFunction) {
+// console.log("contactPHP");
+//   $.ajax({
+//     url: "php/get_menu_content.php",
+//     type: "get",
+//     dataType: "json",
+//     success: successFunction,
+//     error: function(data) {
+//       console.log("contactPHP error: ", data.responseText);
+//     }
+//   });
+//   return false;
+// } find("<li>").remove
 
 
   function buildTopMenu(menuLinksData){
     // console.log("menuLinksData :", menuLinksData);
     var menuTree = buildMenuTree(menuLinksData);
         console.log("menuTree I :", menuTree);
+        $("ul.navbar-nav").find("li").remove();
     
-    var menuTreeToHtml = $("<ul>").addClass("topMenu");
+    // var menuTreeToHtml = $("<ul>").addClass("topMenu");
 
     // $(".unorderedList").remove();
     // $("unorderedList").append(menuTree);
-    $(".row.frontEndHeader .navbar-nav").html("");
+    // $(".frontEndHeaderBottom .navbar-nav").html("");
     for (var i = 0; i < menuTree.length; i++)
     {
       var topMenuListItem = $('<li>');
@@ -66,11 +67,12 @@ console.log("contactPHP");
         }
         topMenuListItem.append(ulLevelI);
       }
-      $(".row.frontEndHeader .navbar-nav").append(topMenuListItem);
+      $(".frontEndHeaderBottom .navbar-nav").append(topMenuListItem);
+      $(".backEndHeaderBottom .navbar-nav").append(topMenuListItem);
     }
   }
 
-   //------------------------------------------------------------------------
+  //------------------------------------------------------------------------
 
   function insert_text_to_DB(inputFieldData) {
     $.ajax({
@@ -135,9 +137,6 @@ console.log("contactPHP");
 
   //------------------------------------------------------------------------
 
-
-  //------------------------------------------------------------------------
-
   function buildMenuTree(menuLinksData){
     var menuTree = [];
 
@@ -174,15 +173,13 @@ console.log("contactPHP");
 
 
 
-// loop genom all menylinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
+  // loop genom all menylinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
 
 
 
-   //------------------------------------------------------------------------
+  //------------------------------------------------------------------------
 
 $(function(){
-  
-    // contactPHP();
 
  //  $(".loginToAdmin").click(function() {
  //    $(".topMenuLinks").show();

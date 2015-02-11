@@ -38,7 +38,7 @@ $(function(){
 		console.log("BANANANANANANANANA");
         contactPHP(buildTopMenu);
 		if (href == "login") {
-			$("section[class*='frontEnd']").hide();
+			// $("section[class*='frontEnd']").hide();
 			$("section[class*='backEnd']").show();
 			$(".clock").show();
 		}

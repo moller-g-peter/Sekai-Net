@@ -55,17 +55,17 @@ body {
      width: 570px;
 }
 
-.carousel-indicators {
+/*.carousel-indicators {
      bottom:-10px;
 }
 
 .carousel-caption {
      bottom:-20px;
-}
+}*/
 
-.carousel-control.left, .carousel-control.right {
+/*.carousel-control.left, .carousel-control.right {
     background-image: none
-}
+}*/
 
 /*.mainNewsSection {
      height: 500px;
@@ -91,7 +91,9 @@ body {
      background: #222 !important;
 }
 
-
+li:hover > ul {
+    display: block;
+}
 
 
 
