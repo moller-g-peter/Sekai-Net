@@ -68,7 +68,7 @@
         topMenuListItem.append(ulLevelI);
       }
       $(".frontEndHeaderBottom .navbar-nav").append(topMenuListItem);
-      $(".backEndHeaderBottom .navbar-nav").append(topMenuListItem);
+      // $(".backEndHeaderBottom .navbar-nav").append(topMenuListItem);
     }
   }
 
@@ -173,7 +173,7 @@
 
 
 
-  // loop genom all menylinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
+  // loop genom all menulinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
 
 
 
@@ -181,18 +181,6 @@
 
 $(function(){
 
- //  $(".loginToAdmin").click(function() {
- //    $(".topMenuLinks").show();
-
- // //    $("section[class*='frontEnd']").hide();
- // //    $("section[class*='backEnd']").show();
- // //    $(".clock").show();
-
- // //  // $("header section:last-child").show();
-	// // // $("main section:last-child").show();
- //  });
-
-  //------------------------------------------------------------------------
 
   $(".inputField").submit(function() {
     menuName = $("#menuTitle_inputField").val();
