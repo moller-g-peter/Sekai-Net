@@ -2,10 +2,10 @@
 -- version 4.2.8
 -- http://www.phpmyadmin.net
 --
--- Värd: localhost
--- Tid vid skapande: 11 feb 2015 kl 20:27
--- Serverversion: 5.6.20
--- PHP-version: 5.3.29
+-- Host: localhost
+-- Generation Time: Jan 29, 2015 at 08:27 AM
+-- Server version: 5.6.20
+-- PHP Version: 5.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Databas: `SekaiNet`
+-- Database: `SekaiNet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `footer`
+-- Table structure for table `footer`
 --
 
 CREATE TABLE IF NOT EXISTS `footer` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `footer` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `images`
+-- Table structure for table `images`
 --
 
 CREATE TABLE IF NOT EXISTS `images` (
@@ -54,40 +54,33 @@ CREATE TABLE IF NOT EXISTS `images` (
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `menu_links`
+-- Table structure for table `menus`
+--
+
+CREATE TABLE IF NOT EXISTS `menus` (
+  `menu_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `machine_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_links`
 --
 
 CREATE TABLE IF NOT EXISTS `menu_links` (
 `mlid` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
+  `menu` varchar(255) NOT NULL,
   `plid` int(11) DEFAULT NULL,
   `weight` int(11) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
-
---
--- Dumpning av Data i tabell `menu_links`
---
-
-INSERT INTO `menu_links` (`mlid`, `title`, `path`, `plid`, `weight`) VALUES
-(25, 'menu title11', 'url11', NULL, 0),
-(26, 'sths', 'fdghdfgh', 25, 0),
-(27, 'r35345345', '425245353', 25, 0),
-(28, '45y45y45y', 'y45y45y45y', 26, 0),
-(29, 'dfghjklöä', 'sdfghjklö', 28, 0),
-(30, 'fgh', 'fgh', 29, 0),
-(31, 'fgh', 'fgh', 29, 0),
-(32, 'sdf', 'sdf', 31, 0),
-(33, 'fghfg', 'fghfgh', 31, 0),
-(34, 'fghfgh', 'fghfgh', NULL, 0),
-(35, 'yui', 'yui', NULL, 0),
-(36, 'ytr', 'ytr', NULL, 0),
-(37, 'ertertert', 'ertertert', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `pages`
+-- Table structure for table `pages`
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
@@ -98,60 +91,33 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `user_id` int(11) NOT NULL,
   `video_id` int(11) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
--- Dumpning av Data i tabell `pages`
+-- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`pid`, `title`, `body`, `img_id`, `user_id`, `video_id`, `created`) VALUES
-(25, 'title11', 'enter text11', NULL, 1, NULL, '2015-02-03 23:04:35'),
-(26, 'yhdfghdfgh', 'dfghdfgh', NULL, 1, NULL, '2015-02-03 23:55:00'),
-(27, '75757567', '35635635635', NULL, 1, NULL, '2015-02-03 23:56:59'),
-(28, '45y45y45y', '45y45y45y', NULL, 1, NULL, '2015-02-04 00:02:07'),
-(29, 'dfghjklöä', 'dfghjklö', NULL, 1, NULL, '2015-02-05 19:03:17'),
-(30, 'fgh', 'fgh', NULL, 1, NULL, '2015-02-06 17:48:19'),
-(31, 'fgh', 'fgh', NULL, 1, NULL, '2015-02-06 17:48:28'),
-(32, 'sdf', 'sdf', NULL, 1, NULL, '2015-02-07 14:31:32'),
-(33, 'fghfgh', 'fghfgh', NULL, 1, NULL, '2015-02-07 14:34:01'),
-(34, 'fghfgh', 'fghfgh', NULL, 1, NULL, '2015-02-07 14:34:54'),
-(35, 'yui', 'yui', NULL, 1, NULL, '2015-02-07 14:35:40'),
-(36, 'ytr', 'ytr', NULL, 1, NULL, '2015-02-09 20:49:35'),
-(37, 'ertertertert', 'ertertert', NULL, 1, NULL, '2015-02-09 21:21:25');
+(25, 'kuyh', 'olh', NULL, 1, NULL, '2015-01-27 14:21:51'),
+(26, 'zdfg', 'dfg', NULL, 1, NULL, '2015-01-27 14:23:20'),
+(27, 'erterterter', 'ertertertert', NULL, 1, NULL, '2015-01-27 14:25:22');
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `url_alias`
+-- Table structure for table `url_alias`
 --
 
 CREATE TABLE IF NOT EXISTS `url_alias` (
 `aid` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
   `pid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
-
---
--- Dumpning av Data i tabell `url_alias`
---
-
-INSERT INTO `url_alias` (`aid`, `path`, `pid`) VALUES
-(25, 'url11', 25),
-(26, 'fdghdfgh', 26),
-(27, '425245353', 27),
-(28, 'y45y45y45y', 28),
-(29, 'sdfghjklö', 29),
-(30, 'fgh', 30),
-(31, 'sdf', 32),
-(32, 'fghfgh', 33),
-(34, 'yui', 35),
-(35, 'ytr', 36),
-(36, 'ertertert', 37);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -165,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumpning av Data i tabell `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`uid`, `fname`, `lname`, `email`, `pass`, `description`, `joined`) VALUES
@@ -174,7 +140,7 @@ INSERT INTO `users` (`uid`, `fname`, `lname`, `email`, `pass`, `description`, `j
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `video`
+-- Table structure for table `video`
 --
 
 CREATE TABLE IF NOT EXISTS `video` (
@@ -188,97 +154,103 @@ CREATE TABLE IF NOT EXISTS `video` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index för dumpade tabeller
+-- Indexes for dumped tables
 --
 
 --
--- Index för tabell `images`
+-- Indexes for table `images`
 --
 ALTER TABLE `images`
  ADD PRIMARY KEY (`iid`), ADD KEY `user_id` (`user_id`);
 
 --
--- Index för tabell `menu_links`
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+ ADD PRIMARY KEY (`machine_name`);
+
+--
+-- Indexes for table `menu_links`
 --
 ALTER TABLE `menu_links`
  ADD PRIMARY KEY (`mlid`), ADD KEY `plid` (`plid`), ADD KEY `path` (`path`);
 
 --
--- Index för tabell `pages`
+-- Indexes for table `pages`
 --
 ALTER TABLE `pages`
  ADD PRIMARY KEY (`pid`), ADD KEY `user_id` (`user_id`), ADD KEY `img_id` (`img_id`), ADD KEY `video_id` (`video_id`);
 
 --
--- Index för tabell `url_alias`
+-- Indexes for table `url_alias`
 --
 ALTER TABLE `url_alias`
  ADD PRIMARY KEY (`aid`), ADD UNIQUE KEY `path` (`path`), ADD KEY `pid` (`pid`);
 
 --
--- Index för tabell `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
  ADD PRIMARY KEY (`uid`), ADD UNIQUE KEY `email` (`email`);
 
 --
--- Index för tabell `video`
+-- Indexes for table `video`
 --
 ALTER TABLE `video`
  ADD PRIMARY KEY (`vid`), ADD KEY `user_id` (`user_id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT för tabell `images`
+-- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
 MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `menu_links`
+-- AUTO_INCREMENT for table `menu_links`
 --
 ALTER TABLE `menu_links`
-MODIFY `mlid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+MODIFY `mlid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `pages`
+-- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
--- AUTO_INCREMENT för tabell `url_alias`
+-- AUTO_INCREMENT for table `url_alias`
 --
 ALTER TABLE `url_alias`
-MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT för tabell `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
 MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT för tabell `video`
+-- AUTO_INCREMENT for table `video`
 --
 ALTER TABLE `video`
 MODIFY `vid` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Restriktioner för dumpade tabeller
+-- Constraints for dumped tables
 --
 
 --
--- Restriktioner för tabell `images`
+-- Constraints for table `images`
 --
 ALTER TABLE `images`
 ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`uid`);
 
 --
--- Restriktioner för tabell `menu_links`
+-- Constraints for table `menu_links`
 --
 ALTER TABLE `menu_links`
 ADD CONSTRAINT `menu_links_ibfk_1` FOREIGN KEY (`plid`) REFERENCES `menu_links` (`mlid`);
 
 --
--- Restriktioner för tabell `pages`
+-- Constraints for table `pages`
 --
 ALTER TABLE `pages`
 ADD CONSTRAINT `pages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`uid`),
@@ -286,13 +258,13 @@ ADD CONSTRAINT `pages_ibfk_2` FOREIGN KEY (`img_id`) REFERENCES `images` (`iid`)
 ADD CONSTRAINT `pages_ibfk_3` FOREIGN KEY (`video_id`) REFERENCES `video` (`vid`);
 
 --
--- Restriktioner för tabell `url_alias`
+-- Constraints for table `url_alias`
 --
 ALTER TABLE `url_alias`
 ADD CONSTRAINT `url_alias_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `pages` (`pid`);
 
 --
--- Restriktioner för tabell `video`
+-- Constraints for table `video`
 --
 ALTER TABLE `video`
 ADD CONSTRAINT `video_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`uid`);
