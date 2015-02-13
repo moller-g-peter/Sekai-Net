@@ -3,7 +3,7 @@
     // console.log("menuLinksData :", menuLinksData);
     var menuTree = buildMenuTree(menuLinksData);
         console.log("menuTree I :", menuTree);
-        $("ul.navbar-nav").find("li").remove();
+        // $("ul.navbar-nav").find("li").not("loginToAdmin").remove();
     
     // var menuTreeToHtml = $("<ul>").addClass("topMenu");
 
@@ -31,10 +31,12 @@
           subMenuItemLevelI.append($("<a>")
             .attr("href", menuTree[i].children[j].path)
             .text(menuTree[i].children[j].title));
-
-          if (menuTree[i].children[j].length > 0)
+          // console.log(menuTree[i].children[j].length);
+          if (menuTree[i].children[j].children.length > 0)
+          // Det fattades en .children! annars försöker den ta ett objekt och objekt kan inte räknas i en for loop!!!!!
           {
             subMenuItemLevelI.addClass("dropdown");
+            // console.log("Imade it!");
             var ulLevelII = $('<ul class="dropdown-menu">');
             for (var k = 0; k < menuTree[i].children[j].children.length; k++)
             {
