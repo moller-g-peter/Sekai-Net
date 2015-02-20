@@ -41,9 +41,6 @@ function goToUrl(thisHref) {
 }
 
 
-
-
-
 function showPage(href){
 	// console.log("BANANANANANANANANA");
     contactPHP(buildTopMenu);
@@ -79,7 +76,6 @@ function showPage(href){
 		pageName = "page";
 	}
 
-	$('.'+href).show();
+	// $('.'+href).show();
 		console.log("thisHref: ",href);
 }
-

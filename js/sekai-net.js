@@ -216,10 +216,8 @@ $(function(){
     };
 
     insert_text_to_DB(allData);
-    // goToUrl("login");
-    // showPage("login");
-        // console.log("what happens");
     this.reset();
+    $("section.page").empty();
 
     return false;
   });
