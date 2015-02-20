@@ -8,9 +8,7 @@ $(function(){
 			event.preventDefault(); // = return false beteende
 			var thisHref = $(this).attr('href');
 
-			showPage(thisHref);
-			// Add the current "state/page" to our history
-			history.pushState(null,null,thisHref);
+			goToUrl(thisHref);
 		});
 
 		// Add a pop state listener
@@ -33,27 +31,55 @@ $(function(){
 		}
 	}
 	start();
-
-	function showPage(href){
-		console.log("BANANANANANANANANA");
-        contactPHP(buildTopMenu);
-		if (href == "login") {
-			// $("section[class*='frontEnd']").hide();
-			$("section[class*='backEnd']").show();
-			$(".clock").show();
-		}
-
-		$('.'+href).show();
-			console.log("thisHref: ",href);
-			
-			// Show a section with an id corresponding
-			// to the page name
-			// $('section').hide();
-			// $('section#'+pageName).show();
-			// $('header .active').removeClass('active');
-			// $('.'+pageName+"-button").addClass('active');
-			// $('section').children().hide();
-			// $('.'+pageName).show();
-	}
 });
+
+
+function goToUrl(thisHref) {
+	showPage(thisHref);
+	// Add the current "state/page" to our history
+	history.pushState(null,null,thisHref);
+}
+
+
+
+
+
+function showPage(href){
+	// console.log("BANANANANANANANANA");
+    contactPHP(buildTopMenu);
+	if (href == "login") {
+		// $("section[class*='frontEnd']").hide();
+		$("section[class*='backEnd']").show();
+		// $(".clock").show();
+		contactPHP(buildSelectMenu);
+	}	else if (href != "login") {
+
+		$.ajax ({
+			url:"php/getPage.php",
+			type: "get",
+			dataType:"json",
+			data: {
+				"get_page" : href
+			},
+			success: function(data){
+				console.log("showPage:", data);
+
+				$(".page").html("");
+				$(".page").append("<article class='pageContent'/>");
+				$(".page").show();
+
+				$(".pageContent").append('<div class="panel panel-default"><div class="panel-heading"><h1 class="panel-title">' + data[0]["title"] + '</h1></div>' + '<div class="panel-body"><p>' + data[0]["body"] + '</p></div>');
+
+			},
+			error: function(data){
+				console.log("showPage error:", data);
+			}
+		});
+
+		pageName = "page";
+	}
+
+	$('.'+href).show();
+		console.log("thisHref: ",href);
+}
 

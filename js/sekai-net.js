@@ -1,15 +1,12 @@
 
   function buildTopMenu(menuLinksData){
     // console.log("menuLinksData :", menuLinksData);
+    $(".frontEndHeaderBottom .navbar-nav").empty();
+
     var menuTree = buildMenuTree(menuLinksData);
         console.log("menuTree I :", menuTree);
-        $("ul.navbar-nav").find("li").remove();
-    
-    // var menuTreeToHtml = $("<ul>").addClass("topMenu");
+        // $("ul.navbar-nav").find("li").not("loginToAdmin").remove();
 
-    // $(".unorderedList").remove();
-    // $("unorderedList").append(menuTree);
-    // $(".frontEndHeaderBottom .navbar-nav").html("");
     for (var i = 0; i < menuTree.length; i++)
     {
       var topMenuListItem = $('<li>');
@@ -31,10 +28,12 @@
           subMenuItemLevelI.append($("<a>")
             .attr("href", menuTree[i].children[j].path)
             .text(menuTree[i].children[j].title));
-
-          if (menuTree[i].children[j].length > 0)
+          // console.log(menuTree[i].children[j].length);
+          if (menuTree[i].children[j].children.length > 0)
+          // Det fattades en .children! annars försöker den ta ett objekt och objekt kan inte räknas i en for loop!!!!!
           {
             subMenuItemLevelI.addClass("dropdown");
+            // console.log("I made it!");
             var ulLevelII = $('<ul class="dropdown-menu">');
             for (var k = 0; k < menuTree[i].children[j].children.length; k++)
             {
@@ -57,19 +56,55 @@
     }
   }
 
+  function buildSelectMenu(menuLinksData) {
+    // console.log("menuLinksData :", menuLinksData);
+    $(".menuSelect select").empty();
+
+    var select = $(".menuSelect select");
+
+    var menuTree = buildMenuTree(menuLinksData);
+        console.log("menuTree I :", menuTree);
+        // $("ul.navbar-nav").find("li").not("loginToAdmin").remove();
+
+
+    select.append('<option value="">Top</option>');
+
+    for (var i = 0; i < menuTree.length; i++)
+    {
+      var depth = "-";
+      select.append(
+        $('<option/>')
+          .text(depth+" "+menuTree[i].title)
+          .val(menuTree[i].mlid)
+      );
+        
+
+      if (menuTree[i].children.length > 0) {
+        depth = "--";
+        for (var j = 0; j < menuTree[i].children.length; j++) {
+          select.append(
+            $('<option/>')
+              .text(depth+" "+menuTree[i].children[j].title)
+              .val(menuTree[i].children[j].mlid)
+          );
+        }
+      }
+    }
+  }
+
   //------------------------------------------------------------------------
 
-  function insert_text_to_DB(inputFieldData) {
+  function insert_text_to_DB(allData) {
     $.ajax({
       url: "php/save_content.php",
       type: "post",
       dataType: "json",
       data: {
-        "page_data" : inputFieldData // "page_data" är referens till "save_content.php"
+        "page_data" : allData.page // "page_data" är referens till "save_content.php"
       },
       success: function(data) {
         console.log("insert_text_to_DB success: ", data);
-        save_menu_title();
+        save_menu_title(allData);
       },
       error: function(data) {
         console.log("insert_text_to_DB error: ", data.responseText);
@@ -80,12 +115,7 @@
 
   //------------------------------------------------------------------------
 
-  function save_menu_title() {
-    var insertToMenuLinks = {
-      ":menuTitle" : menuName,
-      ":url" : path
-    };
-
+  function save_menu_title(allData) {
     // console.log("insertToMenuLinks: ", insertToMenuLinks);
 
     $.ajax({
@@ -93,10 +123,14 @@
       type: "post",
       dataType: "json",
       data: {
-        "insert_text_to_menu_links" : insertToMenuLinks
+        "insert_text_to_menu_links" : allData.menu
       },
       success: function(data) {
         console.log("save_menu_title success: ", data);
+
+        //when all is saved, go to the new page
+        goToUrl("login");
+        // contactPHP();
       },
       error: function(data) {
         console.log("save_menu_title error: ", data.responseText);
@@ -108,6 +142,7 @@
   //------------------------------------------------------------------------
 
   function contactPHP(successFunction) {
+    // console.log("successFunction: ", successFunction);
     $.ajax({
       url: "php/get_menu_content.php",
       type: "get",
@@ -144,7 +179,7 @@
     for(var i in hashMap){
       var oneLink = hashMap[i];
 
-      // här lägger vi till undernivå
+      // här lägger vi till undernivån
       if (oneLink.plid){
         hashMap["#" + oneLink.plid].children.push(oneLink);
       }
@@ -156,48 +191,36 @@
     return menuTree;
   }
 
-
-
-  // loop genom all menylinkdata, ge alla menylänkar en tom array (children), if not plid push to menutree
-
-
-
   //------------------------------------------------------------------------
 
 $(function(){
 
- //  $(".loginToAdmin").click(function() {
- //    $(".topMenuLinks").show();
-
- // //    $("section[class*='frontEnd']").hide();
- // //    $("section[class*='backEnd']").show();
- // //    $(".clock").show();
-
- // //  // $("header section:last-child").show();
-	// // // $("main section:last-child").show();
- //  });
-
-  //------------------------------------------------------------------------
-
   $(".inputField").submit(function() {
-    menuName = $("#menuTitle_inputField").val();
-    path = $("#url_inputField").val();
-
-    console.log("path: ", path);
+    console.log("path: ", $("#url_inputField").val());
 
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
-      ":url" : path,
+      ":url" : $("#url_inputField").val(),
       ":body" : $("#menu_textArea").val()
     };
 
-    insert_text_to_DB(inputFieldData);
+    var menuFieldData = {
+      ":menuTitle" : $("#menuTitle_inputField").val(),
+      ":url" : $("#url_inputField").val(),
+      ":plid" :  $(".menuSelect :selected").val()
+    };
+
+    var allData = {
+      "page" : inputFieldData,
+      "menu" : menuFieldData
+    };
+
+    insert_text_to_DB(allData);
+    // goToUrl("login");
+    // showPage("login");
         // console.log("what happens");
     this.reset();
 
     return false;
   });
-
- 
-
 });

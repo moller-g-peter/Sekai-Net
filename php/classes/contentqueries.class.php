@@ -17,10 +17,10 @@ class ContentQueries extends PDOHelper {
     $page_data[":user_id"] = $this->user_info["user_id"];
 
     //extract and remove page path to prevent crash on insert page
-    $page_path = $page_data[":url"];
+    $page_path = isset($page_data[":url"]) ? $page_data[":url"] : null;
     unset($page_data[":url"]);
     //extract and remove page menu data to prevent crash on insert page
-    $menu_data = $page_data["menuData"];
+    $menu_data = isset($page_data["menuData"]) ? $page_data["menuData"] : null;
     unset($page_data["menuData"]);
 
     $sql = "INSERT INTO pages (title, body, user_id) VALUES (:title, :body, :user_id)";
@@ -59,7 +59,8 @@ class ContentQueries extends PDOHelper {
 
     public function saveMenuTitle($save_links) {
         //adding user_id before insert
-        $sql = "INSERT INTO menu_links (path, title) VALUES (:url, :menuTitle)";
+        $sql = "INSERT INTO menu_links (path, title, plid) VALUES (:url, :menuTitle, :plid)";
+        $save_links[":plid"] = $save_links[":plid"] ? $save_links[":plid"] : null;
         $this->query($sql, $save_links);
         // i detta fall, "save_links" kan heta va fan som helst, 
         // bara inparameter och den under är samma namn
@@ -72,6 +73,18 @@ class ContentQueries extends PDOHelper {
         
         //var_dump($menu_name);
         return $this->query($sql);
+    }
+
+
+    public function getPages($url_pid) {
+        $sql = "SELECT pid FROM url_alias WHERE path = :path";
+        $url_paths = array(":path"=>$url_pid);
+        $url_path_info = $this->query($sql, $url_paths);
+
+
+        $sql2 = "SELECT * FROM pages WHERE pid = :pid";
+        $page_info = array(":pid"=>$url_path_info[0]["pid"]);
+        return $this->query($sql2, $page_info);
     }
 
 }
