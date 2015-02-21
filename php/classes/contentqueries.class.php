@@ -70,7 +70,6 @@ class ContentQueries extends PDOHelper {
 
     public function contactPHP() {
         $sql = "SELECT * FROM menu_links ORDER BY weight";
-        
         //var_dump($menu_name);
         return $this->query($sql);
     }
@@ -87,4 +86,11 @@ class ContentQueries extends PDOHelper {
         return $this->query($sql2, $page_info);
     }
 
+
+    public function getFooter(){
+        $sql = "SELECT * FROM footer";
+        return $this->query($sql); // denna är viktig eftersom den returnerar allt från min sql fråga
+    // var_dump($sql);
+    // die();
+    }
 }

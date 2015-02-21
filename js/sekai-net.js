@@ -4,7 +4,7 @@
     $(".frontEndHeaderBottom .navbar-nav").empty();
 
     var menuTree = buildMenuTree(menuLinksData);
-        console.log("menuTree I :", menuTree);
+        // console.log("menuTree I :", menuTree);
         // $("ul.navbar-nav").find("li").not("loginToAdmin").remove();
 
     for (var i = 0; i < menuTree.length; i++)
@@ -56,6 +56,8 @@
     }
   }
 
+  //------------------------------------------------------------------------
+
   function buildSelectMenu(menuLinksData) {
     // console.log("menuLinksData :", menuLinksData);
     $(".menuSelect select").empty();
@@ -63,7 +65,7 @@
     var select = $(".menuSelect select");
 
     var menuTree = buildMenuTree(menuLinksData);
-        console.log("menuTree I :", menuTree);
+        // console.log("menuTree I :", menuTree);
         // $("ul.navbar-nav").find("li").not("loginToAdmin").remove();
 
 
@@ -103,11 +105,11 @@
         "page_data" : allData.page // "page_data" är referens till "save_content.php"
       },
       success: function(data) {
-        console.log("insert_text_to_DB success: ", data);
+        // console.log("insert_text_to_DB success: ", data);
         save_menu_title(allData);
       },
       error: function(data) {
-        console.log("insert_text_to_DB error: ", data.responseText);
+        // console.log("insert_text_to_DB error: ", data.responseText);
       }
     });
     return false;
@@ -126,14 +128,14 @@
         "insert_text_to_menu_links" : allData.menu
       },
       success: function(data) {
-        console.log("save_menu_title success: ", data);
+        // console.log("save_menu_title success: ", data);
 
         //when all is saved, go to the new page
         goToUrl("login");
         // contactPHP();
       },
       error: function(data) {
-        console.log("save_menu_title error: ", data.responseText);
+        // console.log("save_menu_title error: ", data.responseText);
       }
     });
     return false;
@@ -142,14 +144,14 @@
   //------------------------------------------------------------------------
 
   function contactPHP(successFunction) {
-    // console.log("successFunction: ", successFunction);
+    // console.log("successFunction I: ", successFunction);
     $.ajax({
       url: "php/get_menu_content.php",
       type: "get",
       dataType: "json",
       success: successFunction,
       error: function(data) {
-        console.log("contactPHP error: ", data.responseText);
+        // console.log("contactPHP error: ", data.responseText);
       }
     });
     return false;
@@ -185,10 +187,31 @@
       }
     }
 
-    console.log("menuTree II :", menuTree);
-    console.log("hashMap :", hashMap);
+    // console.log("menuTree II :", menuTree);
+    // console.log("hashMap :", hashMap);
 
     return menuTree;
+  }
+
+  //------------------------------------------------------------------------
+
+  function getFooterInfo(){
+    $.ajax({
+      url: "php/get_footer_content.php",
+      type: "get",
+      dataType: "json",
+      data: "get_footer_content",
+      success: function(data){
+        // console.log("getFooterInfo I:", data);
+        for (var i = 0; i < data.length; i++) {
+
+        }
+        console.log("getFooterInfo II:", data);
+      },
+      error: function(data){
+        console.log("getFooterInfo error:", data.responseText);
+      }
+    });
   }
 
   //------------------------------------------------------------------------
@@ -196,8 +219,8 @@
 $(function(){
 
   $(".inputField").submit(function() {
-    console.log("path: ", $("#url_inputField").val());
-
+    // console.log("path: ", $("#url_inputField").val());
+    
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
       ":url" : $("#url_inputField").val(),
@@ -221,4 +244,8 @@ $(function(){
 
     return false;
   });
+
+getFooterInfo();
+
+
 });
