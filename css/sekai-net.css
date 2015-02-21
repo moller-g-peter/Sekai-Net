@@ -1,7 +1,7 @@
 body {
     margin-top: 53px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-  /*  position: relative;
-    min-height: 100vh;*/
+    position: relative;
+    /*min-height: 100vh;*/
 }
 
 .everything {
@@ -28,11 +28,6 @@ body {
      /*z-index: 10;*/
 }
 
-/*.topNavBarContainer {
-     margin-right: 0;
-     margin-left: 0;
-}*/
-
 .clock {
      margin-right: 40px;
      color: #fff;
@@ -47,31 +42,9 @@ body {
      margin-top: 8px;
 }
 
-/*.mainLogo {
-     height: 1000%;
-}*/
-
 .NewsSlide {
      width: 570px;
 }
-
-/*.carousel-indicators {
-     bottom:-10px;
-}
-
-.carousel-caption {
-     bottom:-20px;
-}*/
-
-/*.carousel-control.left, .carousel-control.right {
-    background-image: none
-}*/
-
-/*.mainNewsSection {
-     height: 500px;
-     margin-left: 700px;
-  padding-right: 250px;
-}*/
 
 .panel-default {
     background:#fff;
@@ -99,3 +72,11 @@ li:hover > ul {
     margin-top: 100px;
 }
 
+footer {
+ position: absolute;
+ z-index: 10;
+ height: 300px;
+ width: 100%;
+ margin-top: 500px;
+ background: white;
+}
