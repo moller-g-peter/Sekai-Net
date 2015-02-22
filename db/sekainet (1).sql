@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.8
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jan 29, 2015 at 08:27 AM
--- Server version: 5.6.20
--- PHP Version: 5.3.29
+-- Host: 127.0.0.1
+-- Generation Time: Feb 22, 2015 at 01:23 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `SekaiNet`
+-- Database: `sekainet`
 --
 
 -- --------------------------------------------------------
@@ -36,6 +36,13 @@ CREATE TABLE IF NOT EXISTS `footer` (
   `info` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `footer`
+--
+
+INSERT INTO `footer` (`name`, `street`, `postalcode`, `city`, `phone`, `email`, `info`) VALUES
+('vbn', 'dfg', 12345, 'jhg', 'dfg', 'fytf', 'vnbv');
+
 -- --------------------------------------------------------
 
 --
@@ -49,18 +56,23 @@ CREATE TABLE IF NOT EXISTS `images` (
   `alt` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `menus`
+-- Dumping data for table `images`
 --
 
-CREATE TABLE IF NOT EXISTS `menus` (
-  `menu_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `machine_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `images` (`iid`, `title`, `path`, `alt`, `user_id`, `uploaded`) VALUES
+(1, 'news logo', 'bild1.png', NULL, 1, '2015-02-22 11:11:53'),
+(3, 'news anchor', 'bild2.jpg', NULL, 1, '2015-02-22 11:13:13'),
+(4, 'wbns logo', 'bild3.png', NULL, 1, '2015-02-22 11:13:56'),
+(5, 'Noon news hour', 'bild4.jpg', NULL, 1, '2015-02-22 11:14:29'),
+(6, 'skiier', 'bild6.png', NULL, 1, '2015-02-22 11:15:01'),
+(7, 'news sign', 'bild7.jpg', NULL, 1, '2015-02-22 11:15:35'),
+(8, 'news room', 'bild8.jpg', NULL, 1, '2015-02-22 11:16:00'),
+(9, 'woman', 'bild9.jpg', NULL, 1, '2015-02-22 11:16:32'),
+(10, 'two women', 'bild10.png', NULL, 1, '2015-02-22 11:16:59'),
+(11, 'fight', 'bild11.jpg', NULL, 1, '2015-02-22 11:17:51');
 
 -- --------------------------------------------------------
 
@@ -72,10 +84,38 @@ CREATE TABLE IF NOT EXISTS `menu_links` (
 `mlid` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `menu` varchar(255) NOT NULL,
   `plid` int(11) DEFAULT NULL,
   `weight` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu_links`
+--
+
+INSERT INTO `menu_links` (`mlid`, `title`, `path`, `plid`, `weight`) VALUES
+(47, 'menu 1', 'menu 1', NULL, 0),
+(48, 'menu 2', 'menu 2', NULL, 0),
+(49, 'menu 3', 'menu 3', NULL, 0),
+(50, 'submenu 1', 'submenu 1', NULL, 0),
+(51, 'vbn', 'vbn', NULL, 0),
+(52, 'ghj', 'ghj', NULL, 0),
+(53, 'bnm', 'bnm', NULL, 0),
+(54, 'bhu', 'bh', 47, 0),
+(55, 'cfg', 'cfg', 48, 0),
+(56, 'lkj', 'lkj', NULL, 0),
+(57, 'kjh', 'kjh', NULL, 0),
+(58, 'kjh', 'kjh', 47, 0),
+(59, 'gyu', 'gyu', 48, 0),
+(60, 'vgy', 'vgy', 49, 0),
+(61, 'bnm', 'bnm', 47, 0),
+(62, 'fty', 'fty', 47, 0),
+(63, 'fty', 'fty', 48, 0),
+(64, 'ghu', 'ghu', 49, 0),
+(65, 'nji', 'nji', NULL, 0),
+(66, 'hji', 'hji', NULL, 0),
+(67, 'ghj', 'ghj', NULL, 0),
+(68, 'vbn', 'vbn', NULL, 0),
+(69, 'bhu', 'bhu', 60, 0);
 
 -- --------------------------------------------------------
 
@@ -91,16 +131,36 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `user_id` int(11) NOT NULL,
   `video_id` int(11) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`pid`, `title`, `body`, `img_id`, `user_id`, `video_id`, `created`) VALUES
-(25, 'kuyh', 'olh', NULL, 1, NULL, '2015-01-27 14:21:51'),
-(26, 'zdfg', 'dfg', NULL, 1, NULL, '2015-01-27 14:23:20'),
-(27, 'erterterter', 'ertertertert', NULL, 1, NULL, '2015-01-27 14:25:22');
+(61, 'menu 1', 'menu 1', NULL, 1, NULL, '2015-02-20 13:33:13'),
+(62, 'menu 2', 'menu 2', NULL, 1, NULL, '2015-02-20 13:33:24'),
+(63, 'menu 3', 'menu 3', NULL, 1, NULL, '2015-02-20 13:33:45'),
+(64, 'submenu 1', 'submenu 1', NULL, 1, NULL, '2015-02-20 13:34:32'),
+(65, 'vbn', 'vbn', NULL, 1, NULL, '2015-02-20 13:51:19'),
+(66, 'ghj', 'ghj', NULL, 1, NULL, '2015-02-20 13:51:58'),
+(67, 'bnm', 'bnm', NULL, 1, NULL, '2015-02-20 14:12:10'),
+(68, 'bhu', 'ubhu', NULL, 1, NULL, '2015-02-20 14:12:58'),
+(69, 'cfg', 'cfg', NULL, 1, NULL, '2015-02-20 14:14:20'),
+(70, 'lkj', 'lkj', NULL, 1, NULL, '2015-02-20 14:16:37'),
+(71, 'kjh', 'kjh', NULL, 1, NULL, '2015-02-20 14:23:35'),
+(72, 'kjh', 'kjh', NULL, 1, NULL, '2015-02-20 14:25:14'),
+(73, 'gyu', 'gyu', NULL, 1, NULL, '2015-02-20 14:26:11'),
+(74, 'vgy', 'vgy', NULL, 1, NULL, '2015-02-20 14:26:42'),
+(75, 'bnm', 'bnm', NULL, 1, NULL, '2015-02-20 14:27:02'),
+(76, 'fty', 'fty', NULL, 1, NULL, '2015-02-20 14:28:47'),
+(77, 'fty', 'fty', NULL, 1, NULL, '2015-02-20 14:29:19'),
+(78, 'ghu', 'ghu', NULL, 1, NULL, '2015-02-20 14:34:55'),
+(79, 'nji', 'nji', NULL, 1, NULL, '2015-02-20 14:36:14'),
+(80, 'hji', 'hji', NULL, 1, NULL, '2015-02-20 14:36:49'),
+(81, 'ghj', 'ghj', NULL, 1, NULL, '2015-02-20 14:37:38'),
+(82, 'vbn', 'vbn', NULL, 1, NULL, '2015-02-20 14:37:52'),
+(83, 'bhu', 'bhu', NULL, 1, NULL, '2015-02-21 13:32:30');
 
 -- --------------------------------------------------------
 
@@ -112,7 +172,31 @@ CREATE TABLE IF NOT EXISTS `url_alias` (
 `aid` int(11) NOT NULL,
   `path` varchar(255) NOT NULL,
   `pid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `url_alias`
+--
+
+INSERT INTO `url_alias` (`aid`, `path`, `pid`) VALUES
+(61, 'menu 1', 61),
+(62, 'menu 2', 62),
+(63, 'menu 3', 63),
+(64, 'submenu 1', 64),
+(65, 'vbn', 65),
+(66, 'ghj', 66),
+(67, 'bnm', 67),
+(68, 'bh', 68),
+(69, 'cfg', 69),
+(70, 'lkj', 70),
+(71, 'kjh', 71),
+(73, 'gyu', 73),
+(74, 'vgy', 74),
+(76, 'fty', 76),
+(78, 'ghu', 78),
+(79, 'nji', 79),
+(80, 'hji', 80),
+(81, 'bhu', 83);
 
 -- --------------------------------------------------------
 
@@ -164,12 +248,6 @@ ALTER TABLE `images`
  ADD PRIMARY KEY (`iid`), ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `menus`
---
-ALTER TABLE `menus`
- ADD PRIMARY KEY (`machine_name`);
-
---
 -- Indexes for table `menu_links`
 --
 ALTER TABLE `menu_links`
@@ -207,22 +285,22 @@ ALTER TABLE `video`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `menu_links`
 --
 ALTER TABLE `menu_links`
-MODIFY `mlid` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `mlid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT for table `url_alias`
 --
 ALTER TABLE `url_alias`
-MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `users`
 --
