@@ -229,7 +229,7 @@
   }
 
   //------------------------------------------------------------------------
-  
+
   function getImages(){
     $.ajax({
       url: "php/get_images.php",
@@ -237,6 +237,7 @@
       dataType: "json",
       success: function(data){
         console.log("get images success: ", data);
+        createImgSelect(data);
       },
       error: function(data){
       console.log("get images error: ", data);
@@ -244,6 +245,30 @@
     });
   }
 
+  function createImgSelect(data){
+    var selectImgInHtml = $("<select class='form-control'></select>");
+
+    var selectTop = $("<option>Select picture</option>");
+
+    selectTop.data("imgdata",{iid:null});
+
+    selectImgInHtml.append(selectTop);
+
+    buildImgOptions(selectImgInHtml, data);
+
+    $(".inputField .imgSelect").html(selectImgInHtml);
+  }
+
+    function buildImgOptions(selectImgInHtml, data){
+      for (var i = 0; i < data.length; i++) {
+
+        var ImgOptions = $('<option value="' + data[i].iid + '">' + " " + data[i].title + '</option>');
+
+        ImgOptions.data("imgdata", data[i]);
+
+        selectImgInHtml.append(ImgOptions);
+      }
+    }
   //------------------------------------------------------------------------
 
 $(function(){
@@ -254,7 +279,8 @@ $(function(){
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
       ":url" : $("#url_inputField").val(),
-      ":body" : $("#menu_textArea").val()
+      ":body" : $("#menu_textArea").val(),
+      ":img_id" : $(".imgSelect select").val
     };
 
     var menuFieldData = {
