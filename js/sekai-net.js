@@ -271,7 +271,17 @@
     }
   //------------------------------------------------------------------------
 
+
+function setMainContentMargin()
+{
+  $("main").css("margin-bottom", $("footer").height() + 15);
+}
+
+
+
 $(function(){
+
+  $( window ).resize(setMainContentMargin);
 
   $(".inputField").submit(function() {
     // console.log("path: ", $("#url_inputField").val());
@@ -303,6 +313,9 @@ $(function(){
 
 getFooterInfo();
 getImages();
-
+setMainContentMargin();
 
 });
+
+
+
