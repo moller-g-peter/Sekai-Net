@@ -13,7 +13,7 @@ h1, p {
 }
 
 .everything {
-     background: url('../img/world-map-background1.jpg') no-repeat center center fixed;
+     /*background: url('../img/world-map-background1.jpg') no-repeat center center fixed;*/
      -webkit-background-size: cover;
      -moz-background-size: cover;
      background-size: cover;
@@ -80,17 +80,10 @@ li:hover > ul {
     margin-top: 100px;
 }
 
-/*footer {
- position: absolute;
- bottom: 0;
- left: 0;
- height: 50px;
- z-index: 100;
- width: 100%;
- margin-top: 70vh;
+footer {
  color: #fff;
  background-color: #222;
-}*/
+}
 
 .logoM {
     height: 20px;
@@ -109,4 +102,8 @@ html, body {
 }
 footer, .page-wrap:after {
     height: 142px;
+}
+
+.page-wrap > .container{
+    background: url('../img/world-map-background1.jpg') no-repeat center center fixed;
 }
