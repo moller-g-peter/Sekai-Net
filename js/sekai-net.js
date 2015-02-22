@@ -279,8 +279,8 @@ $(function(){
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
       ":url" : $("#url_inputField").val(),
-      ":body" : $("#menu_textArea").val(),
-      ":img_id" : $(".imgSelect select").val()
+      ":img_id" : $(".imgSelect select").val(),
+      ":body" : $("#menu_textArea").val()
     };
 
     var menuFieldData = {
