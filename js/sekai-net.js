@@ -202,14 +202,44 @@
       dataType: "json",
       data: "get_footer_content",
       success: function(data){
-        // console.log("getFooterInfo I:", data);
+        console.log("getFooterInfo I:", data);
+
+      console.log("data:", data);
+          var footerDiv = $("<div class='inverseFooter'/>");
         for (var i = 0; i < data.length; i++) {
 
+          footerDiv.append($("<p/>").text(data[i].name));
+          footerDiv.append($("<p/>").text(data[i].street));
+          footerDiv.append($("<p/>").text(data[i].postalcode));
+          footerDiv.append($("<p/>").text(data[i].city));
+          footerDiv.append($("<p/>").text(data[i].phone));
+          footerDiv.append($("<p/>").text(data[i].email));
+          footerDiv.append($("<p/>").text(data[i].info));
+
+          $(".inverseFooter").append(footerDiv);
         }
+
         console.log("getFooterInfo II:", data);
       },
       error: function(data){
         console.log("getFooterInfo error:", data.responseText);
+      }
+    });
+    return false;
+  }
+
+  //------------------------------------------------------------------------
+  
+  function getImages(){
+    $.ajax({
+      url: "php/get_images.php",
+      type: "get",
+      dataType: "json",
+      success: function(data){
+        console.log("get images success: ", data);
+      },
+      error: function(data){
+      console.log("get images error: ", data);
       }
     });
   }
@@ -220,7 +250,7 @@ $(function(){
 
   $(".inputField").submit(function() {
     // console.log("path: ", $("#url_inputField").val());
-    
+
     var inputFieldData = {
       ":title" : $("#menu_inputField").val(),
       ":url" : $("#url_inputField").val(),
@@ -246,6 +276,7 @@ $(function(){
   });
 
 getFooterInfo();
+getImages();
 
 
 });

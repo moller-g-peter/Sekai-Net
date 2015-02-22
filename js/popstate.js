@@ -59,7 +59,7 @@ function showPage(href){
 				"get_page" : href
 			},
 			success: function(data){
-				console.log("showPage:", data);
+				// console.log("showPage:", data);
 
 				$(".page").html("");
 				$(".page").append("<article class='pageContent'/>");
@@ -69,7 +69,7 @@ function showPage(href){
 
 			},
 			error: function(data){
-				console.log("showPage error:", data);
+				// console.log("showPage error:", data);
 			}
 		});
 

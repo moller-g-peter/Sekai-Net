@@ -93,4 +93,9 @@ class ContentQueries extends PDOHelper {
     // var_dump($sql);
     // die();
     }
+
+    public function get_images(){
+        $sql = "SELECT * FROM images";
+        return $this->query($sql);
+    }
 }
