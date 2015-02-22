@@ -97,8 +97,8 @@ html, body {
     margin-bottom: -142px;
 }
 .page-wrap:after{
-    content; "";
-    display: block;
+    /*content; "";*/
+    /*display: block;*/
 }
 footer, .page-wrap:after {
     height: 142px;
