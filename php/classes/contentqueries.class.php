@@ -83,15 +83,21 @@ class ContentQueries extends PDOHelper {
 
         $sql2 = "SELECT * FROM pages WHERE pid = :pid";
         $page_info = array(":pid"=>$url_path_info[0]["pid"]);
-        return $this->query($sql2, $page_info);
+        $result = $this->query($sql2, $page_info);
+
+        if ($result[0]["img_id"] !== null){
+            $sql3 = "SELECT * FROM images WHERE iid = :img_id";
+            $result[0]["img_id"] = $this->query($sql3, array(":img_id" =>$result[0]["img_id"]));
+        }
+        // var_dump($result);
+        // die();
+        return $result;
     }
 
 
     public function getFooter(){
         $sql = "SELECT * FROM footer";
         return $this->query($sql); // denna är viktig eftersom den returnerar allt från min sql fråga
-    // var_dump($sql);
-    // die();
     }
 
     public function get_images(){

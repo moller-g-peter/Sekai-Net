@@ -59,17 +59,17 @@ function showPage(href){
 				"get_page" : href
 			},
 			success: function(data){
-				// console.log("showPage:", data);
+				console.log("showPage:", data);
 
 				$(".page").html("");
 				$(".page").append("<article class='pageContent'/>");
 				$(".page").show();
 
-				$(".pageContent").append('<div class="panel panel-default"><div class="panel-heading"><h1 class="panel-title">' + data[0]["title"] + '</h1></div>' + '<div class="panel-body"><p>' + data[0]["body"] + '</p></div>');
+				$(".pageContent").append('<div class="panel panel-default"><div class="panel-heading"><h1 class="panel-title">' + data[0]["title"] + '</h1></div>' + '<div class="panel-body"><p>' + data[0]["body"] + '</p>'+'<img src="img/'+data[0]["img_id"][0]["path"]+'" class="img-responsive">'+'</div></div>');
 
 			},
 			error: function(data){
-				// console.log("showPage error:", data);
+				console.log("showPage error:", data);
 			}
 		});
 

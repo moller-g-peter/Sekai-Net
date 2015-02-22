@@ -280,7 +280,7 @@ $(function(){
       ":title" : $("#menu_inputField").val(),
       ":url" : $("#url_inputField").val(),
       ":body" : $("#menu_textArea").val(),
-      ":img_id" : $(".imgSelect select").val
+      ":img_id" : $(".imgSelect select").val()
     };
 
     var menuFieldData = {
